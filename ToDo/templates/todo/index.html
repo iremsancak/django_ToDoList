@@ -1,0 +1,58 @@
+
+{% load static %}
+<script src="{% static "todo/jquery/dist/jquery.js" %}"></script>
+<script src="{% static "todo/bootstrap/dist/js/bootstrap.js" %}"></script>
+<link rel="stylesheet" href="{% static 'todo/bootstrap/dist/css/bootstrap.min.css' %}">
+
+{% include "todo/header.html" %}
+<div class="container">
+    <main role="main" class="pb-3">
+        <h1>To Do List</h1>
+        <div id="create">
+            <a href="/todo/create">Add</a>
+            {% include "todo/create.html" %}
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>isDone</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entry in todo_list %}
+                        <tr>
+                            <td>
+                                {{ entry.isDone }}
+                            </td>
+                            <td>
+                                {{ entry.Description }}
+                {#				<a href="/todo/{{ entry.id }}/">{{ entry.Description }}</a>#}
+                            </td>
+                            <td>
+                                <a href="/todo/{{ entry.Id }}/edit">Edit2</a>
+                                <a href="#" onclick="LoadEditModal({{ entry.Id }})">Edit</a> |
+                                <a href="#" onclick="LoadDeleteModal({{ entry.Id }})">Delete</a>
+                            </td>
+                        </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</div>
+<div id="modalContainer"></div>
+{% include "todo/footer.html" %}
+<script type="text/javascript">
+	    LoadDeleteModal = function (ListEntryId) {
+        $("#modalContainer").load(`/todo/${ListEntryId}/delete`, function() {
+			$('#ListEntryDeleteModal').modal( 'show');
+
+        });
+    };
+	LoadEditModal = function (ListEntryId) {
+		$("#modalContainer").load(`/todo/${ListEntryId}/edit`, function () {
+			$('#ListEntryEditModal').modal('show');
+        });
+    };
+</script>

@@ -1,0 +1,14 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'todo/bootstrap/dist/css/bootstrap.min.css' %}">
+{% include "todo/header.html" %}
+<div class="container">
+    <main role="main" class="pb-3">
+        <div class="text-center">
+            <h1 class="display-4">Welcome</h1>
+            <p>This is a simple Web-Application done with the help of the Web-Framework Django.</p>
+            <p>The Web-Application is a simple todo List, new List entries can be created, existing ones can be edited and Entries can be deleted</p>
+        </div>
+    </main>
+</div>
+{% include "todo/footer.html" %}

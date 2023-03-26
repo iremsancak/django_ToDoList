@@ -1,0 +1,23 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'todo/bootstrap/dist/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'todo/style.css' %}">
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <hr/>
+    <div>
+        <form method="POST" action="{% url 'todo:create' %}" id="Create-Form">
+                    <!-- Security token by Django -->
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Add" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+#Create-Form {
+    display: flex;
+}
+.modal-header > a {
+    font-size: xx-large;
+    position: absolute;
+    text-decoration: none;
+    right: 10px;
+    color: black;
+    top: -6px;
+}
