@@ -9,8 +9,12 @@
     <main role="main" class="pb-3">
         <h1>To Do List</h1>
         <div id="create">
-            <a href="/todo/create">Add</a>
-            {% include "todo/create.html" %}
+            <form method="POST" action="{% url 'todo:create' %}" id="Create-Form">
+                <!-- Security token by Django -->
+            {% csrf_token %}
+            {{createForm}}
+            <input type="submit" value="Add" class="btn btn-primary" >
+            </form>
         </div>
         <table class="table">
             <thead>
@@ -22,20 +26,19 @@
             </thead>
             <tbody>
             {% for entry in todo_list %}
-                        <tr>
-                            <td>
-                                {{ entry.isDone }}
-                            </td>
-                            <td>
-                                {{ entry.Description }}
-                {#				<a href="/todo/{{ entry.id }}/">{{ entry.Description }}</a>#}
-                            </td>
-                            <td>
-                                <a href="/todo/{{ entry.Id }}/edit">Edit2</a>
-                                <a href="#" onclick="LoadEditModal({{ entry.Id }})">Edit</a> |
-                                <a href="#" onclick="LoadDeleteModal({{ entry.Id }})">Delete</a>
-                            </td>
-                        </tr>
+                <tr>
+                    <td>
+                        {{ entry.isDone }}
+                    </td>
+                    <td>
+                        {{ entry.Description }}
+        {#				<a href="/todo/{{ entry.id }}/">{{ entry.Description }}</a>#}
+                    </td>
+                    <td>
+                        <a href="#" onclick="LoadEditModal({{ entry.Id }})">Edit</a> |
+                        <a href="#" onclick="LoadDeleteModal({{ entry.Id }})">Delete</a>
+                    </td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>
